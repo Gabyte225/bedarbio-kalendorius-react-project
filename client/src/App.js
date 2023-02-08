@@ -11,9 +11,6 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/landing" element={<Landing />} />
-        <Route path="/" element={<Landing />} />
-        <Route path="/" element={<Landing />} />
-        <Route path="/" element={<Landing />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
