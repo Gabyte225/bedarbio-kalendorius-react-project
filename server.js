@@ -4,7 +4,7 @@ import notFoundMiddleware from "./middleware/not-found.js";
 import dotenv from "dotenv";
 import "express-async-errors";
 import morgan from "morgan";
-// import cors from "cors";
+import cors from "cors";
 
 //DB connection
 import connectDB from "./db/connect.js";
@@ -25,7 +25,7 @@ errorHandlerMiddleware;
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
