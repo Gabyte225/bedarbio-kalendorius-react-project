@@ -60,18 +60,9 @@ const AppProvider = ({ children }) => {
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/v1/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        }
-      );
-      const data = await response.json();
-      const { user, token, location } = data;
+      const response = await axios.post("/api/v1/auth/register", currentUser);
+      // console.log(response);
+      const { user, token, location } = response.data;
       dispatch({
         type: REGISTER_USER_SUCCESS,
         payload: {
@@ -86,9 +77,10 @@ const AppProvider = ({ children }) => {
         location,
       });
     } catch (error) {
+      // console.log(error.response);
       dispatch({
         type: REGISTER_USER_ERROR,
-        payload: { msg: error.message },
+        payload: { msg: error.response.data.msg },
       });
     }
     clearAlert();
@@ -97,17 +89,8 @@ const AppProvider = ({ children }) => {
   const loginUser = async (currentUser) => {
     dispatch({ type: LOGIN_USER_BEGIN });
     try {
-      const response = await fetch("http://localhost:5000/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(currentUser),
-      });
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      const data = await response.json();
+      const { data } = await axios.post("/api/v1/auth/login", currentUser);
+      console.log(data);
       const { user, token, location } = data;
 
       dispatch({
@@ -119,7 +102,7 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       dispatch({
         type: LOGIN_USER_ERROR,
-        payload: { msg: error.message },
+        payload: { msg: error.response.data.msg },
       });
     }
     clearAlert();
