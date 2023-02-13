@@ -22,7 +22,7 @@ const SharedLayout = () => {
 const Wrapper = styled.main`
   .dashboard {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   .dashboard-page {
     width: 90%;

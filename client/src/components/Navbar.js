@@ -54,7 +54,7 @@ const Wrapper = styled.main`
   }
   .nav-center {
     display: flex;
-    width: 90vw;
+    width: 85vw;
     align-items: center;
     justify-content: space-between;
   }
