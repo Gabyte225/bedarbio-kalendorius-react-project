@@ -108,7 +108,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 200px;
+  margin-top: 100px;
   .form {
     background: var(--white);
     display: flex;
